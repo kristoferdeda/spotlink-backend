@@ -20,7 +20,7 @@ const server = http.createServer(app); // Create HTTP server
 
 const io = new Server(server, {
   cors: {
-    origin: "https://spotlink-frontend.onrender.com/",
+    origin: "https://spotlink-frontend.onrender.com",
     credentials: true,
   },
 });
@@ -33,10 +33,14 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: "https://spotlink-frontend.onrender.com/",
+  origin: "https://spotlink-frontend.onrender.com",
   credentials: true,
 }));
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("✅ SpotLink Backend is running.");
+});
 
 // Routes
 app.use("/api/auth", authRoutes);
